@@ -4,9 +4,13 @@ from .serializers import BookSerializer
 # from django.http import HttpResponse
 # from django.views import View
 from .models import Book
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
 
 # class Another(View):
-#     book = Book.objects.get(id=2)
+#      book = Book.objects.get(id=2)
 #     output = f"We have book: {book.title} book with ID {book.id} <br>"
     
 #     # for book in books:
@@ -14,7 +18,6 @@ from .models import Book
     
 #     def get(self, request):
 #         return HttpResponse(self.output)
-    
 
 # def first(request): 
 #     books = Book.objects.all()
@@ -23,3 +26,7 @@ from .models import Book
 class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,) 
+
+   
